@@ -20,8 +20,15 @@ class TrainingDetails extends StatelessWidget {
       ),
       body: Container(
         padding: EdgeInsets.all(15.0),
-        child: Center(
-          child: Text('day = $day, month = $month, year = $year'),
+        child: Column(
+          children: [
+            Center(
+              child: Text('day = $day, month = $month, year = $year'),
+            ),
+            Center(
+              child: Text('day = $day, month = $month, year = $year'),
+            ),
+          ],
         ),
       ),
     );

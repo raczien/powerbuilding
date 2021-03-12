@@ -1,21 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:powerbuilding/exercises.dart';
 
-class ListEntry extends StatelessWidget {
-  ListEntry(
-      {@required this.exercise, @required this.name, @required this.onPress});
+class ListEntry1 extends StatelessWidget {
+  ListEntry1(
+      {@required this.exercise,
+      @required this.name,
+      @required this.day,
+      @required this.month,
+      @required this.year});
 
   final AssetImage exercise;
   final String name;
-  final Function onPress;
+  final int day;
+  final int month;
+  final int year;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onPress,
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => TrainingDetails(
+              day: day,
+              month: month,
+              year: year,
+            ),
+          ),
+        );
+      },
       child: Container(
         margin: EdgeInsets.all(5.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Padding(
               padding: EdgeInsets.all(5.0),
@@ -34,7 +52,7 @@ class ListEntry extends StatelessWidget {
             Text(
               name,
               style: TextStyle(
-                fontSize: 45,
+                fontSize: 30,
               ),
             ),
           ],

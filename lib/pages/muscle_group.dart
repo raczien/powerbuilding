@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:powerbuilding/exercise.dart';
-import 'file:///C:/Users/lmarczian/AndroidStudioProjects/powerbuilding/lib/objects/listEntry.dart';
-import 'package:powerbuilding/divider.dart';
-
+import 'package:powerbuilding/objects/muscle_entry.dart';
 //TODO: GANZE LISTE MIT ALLEN ÜBUNGEN, mit:
 //TODO: bool visible = false; if name like bauch: true oder so
 
@@ -21,160 +18,86 @@ class MuscleRegion extends StatelessWidget {
         backgroundColor: Color(0xFF8B0000),
         title: Text('Muskelgruppe'),
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(8),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          ListEntry(
-            onPress: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => TrainingDetails(
-                    day: day,
-                    month: month,
-                    year: year,
-                  ),
-                ),
-              );
-            },
-            exercise: AssetImage('images/groups/bauch.png'),
-            name: 'Bauch',
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ListEntry1(
+                exercise: AssetImage('images/muscles/back.png'),
+                name: 'Back',
+                day: day,
+                month: month,
+                year: year,
+              ),
+              ListEntry1(
+                exercise: AssetImage('images/muscles/biceps.png'),
+                name: 'Biceps',
+                day: day,
+                month: month,
+                year: year,
+              ),
+              ListEntry1(
+                exercise: AssetImage('images/muscles/center.png'),
+                name: 'Core',
+                day: day,
+                month: month,
+                year: year,
+              ),
+            ],
           ),
-          GroupSplitter(),
-          ListEntry(
-            onPress: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => TrainingDetails(
-                    day: day,
-                    month: month,
-                    year: year,
-                  ),
-                ),
-              );
-            },
-            exercise: AssetImage('images/groups/beine.png'),
-            name: 'Beine',
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ListEntry1(
+                exercise: AssetImage('images/muscles/chest.png'),
+                name: 'Chest',
+                day: day,
+                month: month,
+                year: year,
+              ),
+              ListEntry1(
+                exercise: AssetImage('images/muscles/forearms.png'),
+                name: 'Forearms',
+                day: day,
+                month: month,
+                year: year,
+              ),
+              ListEntry1(
+                exercise: AssetImage('images/muscles/legs.png'),
+                name: 'Legs',
+                day: day,
+                month: month,
+                year: year,
+              ),
+            ],
           ),
-          GroupSplitter(),
-          ListEntry(
-            onPress: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => TrainingDetails(
-                    day: day,
-                    month: month,
-                    year: year,
-                  ),
-                ),
-              );
-            },
-            exercise: AssetImage('images/groups/bizeps.png'),
-            name: 'Bizeps',
-          ),
-          GroupSplitter(),
-          ListEntry(
-            onPress: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => TrainingDetails(
-                    day: day,
-                    month: month,
-                    year: year,
-                  ),
-                ),
-              );
-            },
-            exercise: AssetImage('images/groups/bauch.png'),
-            name: 'Bauch',
-          ),
-          GroupSplitter(),
-          ListEntry(
-            onPress: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => TrainingDetails(
-                    day: day,
-                    month: month,
-                    year: year,
-                  ),
-                ),
-              );
-            },
-            exercise: AssetImage('images/groups/bauch.png'),
-            name: 'Bauch',
-          ),
-          GroupSplitter(),
-          ListEntry(
-            onPress: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => TrainingDetails(
-                    day: day,
-                    month: month,
-                    year: year,
-                  ),
-                ),
-              );
-            },
-            exercise: AssetImage('images/groups/bauch.png'),
-            name: 'Bauch',
-          ),
-          GroupSplitter(),
-          ListEntry(
-            onPress: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => TrainingDetails(
-                    day: day,
-                    month: month,
-                    year: year,
-                  ),
-                ),
-              );
-            },
-            exercise: AssetImage('images/groups/bauch.png'),
-            name: 'Bauch',
-          ),
-          GroupSplitter(),
-          ListEntry(
-            onPress: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => TrainingDetails(
-                    day: day,
-                    month: month,
-                    year: year,
-                  ),
-                ),
-              );
-            },
-            exercise: AssetImage('images/groups/bauch.png'),
-            name: 'Bauch',
-          ),
-          GroupSplitter(),
-          ListEntry(
-            onPress: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => TrainingDetails(
-                    day: day,
-                    month: month,
-                    year: year,
-                  ),
-                ),
-              );
-            },
-            exercise: AssetImage('images/groups/bauch.png'),
-            name: 'Bauch',
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ListEntry1(
+                exercise: AssetImage('images/muscles/shoulders.png'),
+                name: 'Shoulders',
+                day: day,
+                month: month,
+                year: year,
+              ),
+              ListEntry1(
+                exercise: AssetImage('images/muscles/triceps.png'),
+                name: 'Triceps',
+                day: day,
+                month: month,
+                year: year,
+              ),
+              ListEntry1(
+                exercise: AssetImage('images/muscles/chest.png'),
+                name: 'TEST',
+                day: day,
+                month: month,
+                year: year,
+              ),
+            ],
           ),
         ],
       ),

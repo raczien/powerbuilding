@@ -1,7 +1,9 @@
 import 'dart:ui';
-import '../objects/bottom_button.dart';
-import 'package:flutter/material.dart';
+
 import 'package:calendar_timeline/calendar_timeline.dart';
+import 'package:flutter/material.dart';
+
+import '../objects/bottom_button.dart';
 import 'muscle_group.dart';
 
 class InputPage extends StatefulWidget {
@@ -18,7 +20,6 @@ class _InputPageState extends State<InputPage> {
     _resetSelectedDate();
   }
 
-  //TODO: DAS HIER
   void _resetSelectedDate() {
     _selectedDate = DateTime.now();
   }
@@ -70,19 +71,20 @@ class _InputPageState extends State<InputPage> {
             height: 40,
           ),
           BottomButton(
-              navigate: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MuscleRegion(
-                      day: _selectedDate.day,
-                      month: _selectedDate.month,
-                      year: _selectedDate.year,
-                    ),
+            navigate: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MuscleRegion(
+                    day: _selectedDate.day,
+                    month: _selectedDate.month,
+                    year: _selectedDate.year,
                   ),
-                );
-              },
-              usage: 'Weiter'),
+                ),
+              );
+            },
+            usage: 'Weiter',
+          ),
           Center(
             child: Text(
               'Selected date is $_selectedDate',
