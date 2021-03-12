@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:powerbuilding/objects/muscle_entry.dart';
-//TODO: GANZE LISTE MIT ALLEN ÜBUNGEN, mit:
-//TODO: bool visible = false; if name like bauch: true oder so
 
 class MuscleRegion extends StatelessWidget {
   MuscleRegion({@required this.day, @required this.month, @required this.year});
