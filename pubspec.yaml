@@ -26,6 +26,14 @@ flutter:
   assets:
     - images/logo/
     - images/muscles/
+    - images/back/
+    - images/biceps/
+    - images/chest/
+    - images/core/
+    - images/forearms/
+    - images/legs/
+    - images/shoulders/
+    - images/triceps/
 
 dependency_overrides:
   intl: ^0.17.0-nullsafety.2

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:powerbuilding/exercises.dart';
+import 'package:powerbuilding/training_details.dart';
 
-class ListEntry1 extends StatelessWidget {
-  ListEntry1(
+class ListEntry extends StatelessWidget {
+  ListEntry(
       {@required this.exercise,
       @required this.name,
       @required this.day,
@@ -19,10 +19,12 @@ class ListEntry1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        print(name);
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => TrainingDetails(
+              name: name,
               day: day,
               month: month,
               year: year,

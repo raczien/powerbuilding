@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:powerbuilding/constants.dart';
 
 class BottomButton extends StatelessWidget {
   BottomButton({@required this.navigate, @required this.usage});
@@ -21,7 +22,7 @@ class BottomButton extends StatelessWidget {
               ),
             ),
           ),
-          color: Color(0xFF7B0000),
+          color: kRedThemeColor,
           margin: EdgeInsets.only(top: 10.0),
           width: double.infinity,
           height: 50,

@@ -1,36 +1,35 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
-class TrainingDetails extends StatelessWidget {
-  TrainingDetails(
-      {@required this.day, @required this.month, @required this.year});
+class Exercises {
+  Exercises(
+      {@required this.pic,
+      @required this.name,
+      @required this.reps,
+      @required this.sets,
+      @required this.weight});
 
-  final int day;
-  final int month;
-  final int year;
+  AssetImage pic;
+  String name;
+  int reps;
+  int sets;
+  int weight;
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFF8B0000),
-        title: Center(
-          child: Text('Hier Daten eingeben'),
-        ),
-      ),
-      body: Container(
-        padding: EdgeInsets.all(15.0),
-        child: Column(
-          children: [
-            Center(
-              child: Text('day = $day, month = $month, year = $year'),
-            ),
-            Center(
-              child: Text('day = $day, month = $month, year = $year'),
-            ),
-          ],
-        ),
-      ),
-    );
+  void setDetails(n, r, s, w) {
+    name = n;
+    reps = r;
+    sets = s;
+    weight = w;
+  }
+
+  List<int> getDetails() {
+    List<int> details;
+    details.add(reps);
+    details.add(sets);
+    details.add(weight);
+    return details;
+  }
+
+  String getName() {
+    return name;
   }
 }

@@ -2,9 +2,10 @@ import 'dart:ui';
 
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:flutter/material.dart';
+import 'package:powerbuilding/constants.dart';
 
 import '../objects/bottom_button.dart';
-import 'muscle_group.dart';
+import 'muscle_region.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -28,7 +29,7 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF8B0000),
+        backgroundColor: kRedThemeColor,
         title: Center(
           child: Text('START'),
         ),
@@ -61,7 +62,7 @@ class _InputPageState extends State<InputPage> {
               dayColor: Colors.white,
               dayNameColor: Colors.white,
               activeDayColor: Colors.white,
-              activeBackgroundDayColor: Color(0xFF7B0000),
+              activeBackgroundDayColor: kRedThemeColor,
               dotsColor: Color(0xFF333A47),
               selectableDayPredicate: (date) => date.day != 23,
               locale: 'de',
@@ -83,7 +84,7 @@ class _InputPageState extends State<InputPage> {
                 ),
               );
             },
-            usage: 'Weiter',
+            usage: 'Next',
           ),
           Center(
             child: Text(
