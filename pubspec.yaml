@@ -14,6 +14,7 @@ dependencies:
   calendar_timeline: ^0.7.0
   flutter_localizations:
     sdk: flutter
+  font_awesome_flutter: ^8.4.0
 
   cupertino_icons: ^1.0.2
 
@@ -34,6 +35,7 @@ flutter:
     - images/legs/
     - images/shoulders/
     - images/triceps/
+    - images/cardio/
 
 dependency_overrides:
   intl: ^0.17.0-nullsafety.2

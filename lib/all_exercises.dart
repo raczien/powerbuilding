@@ -231,3 +231,97 @@ var reverse_curl = Exercises(
   sets: 3,
   weight: 50,
 );
+//LEGS
+var squad = Exercises(
+  pic: AssetImage('images/legs/squad.jpg'),
+  name: 'Squad',
+  reps: 10,
+  sets: 3,
+  weight: 50,
+);
+var leg_extensions = Exercises(
+  pic: AssetImage('images/legs/leg_extensions.jpg'),
+  name: 'Leg Extensions',
+  reps: 10,
+  sets: 3,
+  weight: 50,
+);
+var leg_pulls = Exercises(
+  pic: AssetImage('images/legs/leg_pulls.jpg'),
+  name: 'Leg Pulls',
+  reps: 10,
+  sets: 3,
+  weight: 50,
+);
+var calves = Exercises(
+  pic: AssetImage('images/legs/calves.jpg'),
+  name: 'Calves',
+  reps: 10,
+  sets: 3,
+  weight: 50,
+);
+var leg_press = Exercises(
+  pic: AssetImage('images/legs/leg_press.jpg'),
+  name: 'Leg Press',
+  reps: 10,
+  sets: 3,
+  weight: 50,
+);
+var smiths_squad = Exercises(
+  pic: AssetImage('images/legs/smiths_squad.jpg'),
+  name: 'Smiths Squad',
+  reps: 10,
+  sets: 3,
+  weight: 50,
+);
+//SHOULDERS
+var shoulder_press = Exercises(
+  pic: AssetImage('images/shoulders/shoulder_press.jpg'),
+  name: 'Shoulder Press',
+  reps: 10,
+  sets: 3,
+  weight: 50,
+);
+var shoulder_side_raise = Exercises(
+  pic: AssetImage('images/shoulders/shoulder_side_raise.jpg'),
+  name: 'Side Raise (Cable)',
+  reps: 10,
+  sets: 3,
+  weight: 50,
+);
+var side_raise = Exercises(
+  pic: AssetImage('images/shoulders/shoulder_press.jpg'),
+  name: 'Side Raise (Dunbell)',
+  reps: 10,
+  sets: 3,
+  weight: 50,
+);
+var front_raise = Exercises(
+  pic: AssetImage('images/shoulders/front_raise.jpg'),
+  name: 'Front Raise',
+  reps: 10,
+  sets: 3,
+  weight: 50,
+);
+//TRICEPS
+var french_press = Exercises(
+  pic: AssetImage('images/triceps/french_press.jpg'),
+  name: 'French Press',
+  reps: 10,
+  sets: 3,
+  weight: 50,
+);
+var overhead_extension = Exercises(
+  pic: AssetImage('images/triceps/overhead_extension.jpg'),
+  name: 'Overhead Extension',
+  reps: 10,
+  sets: 3,
+  weight: 50,
+);
+var pushdowns = Exercises(
+  pic: AssetImage('images/triceps/pushdowns.jpg'),
+  name: 'Pushdowns',
+  reps: 10,
+  sets: 3,
+  weight: 50,
+);

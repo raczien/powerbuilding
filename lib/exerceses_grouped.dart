@@ -41,3 +41,21 @@ List<Exercises> back = [
 List<Exercises> core = [crunch_machine, inclined_situp, leg_fall];
 
 List<Exercises> forearms = [extension, reverse_curl];
+
+List<Exercises> legs = [
+  leg_press,
+  squad,
+  smiths_squad,
+  leg_extensions,
+  leg_pulls,
+  calves
+];
+
+List<Exercises> shoulders = [
+  shoulder_press,
+  side_raise,
+  shoulder_side_raise,
+  front_raise
+];
+
+List<Exercises> triceps = [french_press, overhead_extension, pushdowns];

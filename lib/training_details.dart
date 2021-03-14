@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:powerbuilding/exerceses_grouped.dart';
 import 'package:powerbuilding/exercises.dart';
+import 'package:powerbuilding/pages/training_input.dart';
 
 import 'constants.dart';
 
@@ -31,13 +32,11 @@ class TrainingDetails extends StatelessWidget {
       case 'Forearms':
         return forearms;
       case 'Legs':
-        return chest;
+        return legs;
       case 'Shoulders':
-        return chest;
+        return shoulders;
       case 'Triceps':
-        return chest;
-      case 'Test':
-        return chest;
+        return triceps;
     }
   }
 
@@ -55,12 +54,27 @@ class TrainingDetails extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return Row(
             children: <Widget>[
-              ClipRRect(
-                borderRadius: BorderRadius.circular(22.0),
-                child: Image(
-                  image: _getCurrentMuscleGroup()[index].pic,
-                  width: 100,
-                  height: 100,
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Training(
+                        exercise: _getCurrentMuscleGroup()[index],
+                        day: day,
+                        month: month,
+                        year: year,
+                      ),
+                    ),
+                  );
+                },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(22.0),
+                  child: Image(
+                    image: _getCurrentMuscleGroup()[index].pic,
+                    width: 100,
+                    height: 100,
+                  ),
                 ),
               ),
               SizedBox(
