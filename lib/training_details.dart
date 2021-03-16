@@ -19,7 +19,6 @@ class TrainingDetails extends StatelessWidget {
   final int year;
 
   List<Exercises> _getCurrentMuscleGroup() {
-    print('func get called');
     switch (name) {
       case 'Back':
         return back;
@@ -52,23 +51,23 @@ class TrainingDetails extends StatelessWidget {
         itemCount: _getCurrentMuscleGroup().length,
         separatorBuilder: (BuildContext context, int index) => Divider(),
         itemBuilder: (BuildContext context, int index) {
-          return Row(
-            children: <Widget>[
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Training(
-                        exercise: _getCurrentMuscleGroup()[index],
-                        day: day,
-                        month: month,
-                        year: year,
-                      ),
-                    ),
-                  );
-                },
-                child: ClipRRect(
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Training(
+                    exercise: _getCurrentMuscleGroup()[index],
+                    day: day,
+                    month: month,
+                    year: year,
+                  ),
+                ),
+              );
+            },
+            child: Row(
+              children: <Widget>[
+                ClipRRect(
                   borderRadius: BorderRadius.circular(22.0),
                   child: Image(
                     image: _getCurrentMuscleGroup()[index].pic,
@@ -76,17 +75,19 @@ class TrainingDetails extends StatelessWidget {
                     height: 100,
                   ),
                 ),
-              ),
-              SizedBox(
-                width: 20,
-              ),
-              Text(
-                '${_getCurrentMuscleGroup()[index].name}',
-                style: TextStyle(
-                  fontSize: 25,
+                SizedBox(
+                  width: 20,
                 ),
-              ),
-            ],
+                Container(
+                  child: Text(
+                    '${_getCurrentMuscleGroup()[index].name}',
+                    style: TextStyle(
+                      fontSize: 25,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           );
         },
       ),

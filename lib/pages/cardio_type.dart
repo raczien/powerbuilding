@@ -20,7 +20,7 @@ class Cardio extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               CardioEntry(
                 exercise: AssetImage('images/cardio/bike.jpg'),
@@ -39,7 +39,7 @@ class Cardio extends StatelessWidget {
             ],
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               CardioEntry(
                 exercise: AssetImage('images/cardio/crosstrainer.jpg'),
@@ -58,11 +58,11 @@ class Cardio extends StatelessWidget {
             ],
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               CardioEntry(
                 exercise: AssetImage('images/cardio/stairs.jpg'),
-                name: 'Walking Stairs',
+                name: 'Stairs',
                 day: day,
                 month: month,
                 year: year,

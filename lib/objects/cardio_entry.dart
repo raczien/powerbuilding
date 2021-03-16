@@ -43,7 +43,7 @@ class CardioEntry extends StatelessWidget {
             Text(
               name,
               style: TextStyle(
-                fontSize: 30,
+                fontSize: 20,
               ),
             ),
           ],
