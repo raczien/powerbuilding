@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:powerbuilding/pages/cardio_input.dart';
 
 class CardioEntry extends StatelessWidget {
   CardioEntry(
@@ -18,6 +19,18 @@ class CardioEntry extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Cardio_Training(
+              exercise: name,
+              pic: exercise,
+              day: day,
+              month: month,
+              year: year,
+            ),
+          ),
+        );
         print(name);
         print('cardio_entry Routing einfügen');
       },

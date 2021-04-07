@@ -65,28 +65,29 @@ class TrainingDetails extends StatelessWidget {
                 ),
               );
             },
-            child: Row(
-              children: <Widget>[
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(22.0),
-                  child: Image(
-                    image: _getCurrentMuscleGroup()[index].pic,
-                    width: 100,
-                    height: 100,
+            child: Container(
+              color: Colors.transparent,
+              child: Row(
+                children: <Widget>[
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(22.0),
+                    child: Image(
+                      image: _getCurrentMuscleGroup()[index].pic,
+                      width: 100,
+                      height: 100,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                Container(
-                  child: Text(
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text(
                     '${_getCurrentMuscleGroup()[index].name}',
                     style: TextStyle(
                       fontSize: 25,
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },

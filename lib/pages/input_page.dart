@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:powerbuilding/constants.dart';
 
 import 'cardio_type.dart';
-import 'muscle_region.dart';
+import 'muscle_type.dart';
 
 class InputPage extends StatefulWidget {
   @override

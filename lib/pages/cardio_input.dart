@@ -4,45 +4,33 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:powerbuilding/constants.dart';
 import 'package:powerbuilding/database/db_helper.dart';
-import 'package:powerbuilding/exercises.dart';
 import 'package:powerbuilding/objects/round_icon_button.dart';
 
-class Training extends StatefulWidget {
-  Training(
+class Cardio_Training extends StatefulWidget {
+  Cardio_Training(
       {@required this.exercise,
+      @required this.pic,
       @required this.day,
       @required this.month,
       @required this.year});
 
-  Exercises exercise;
+  String exercise;
+  final AssetImage pic;
   final int day;
   final int month;
   final int year;
   @override
-  _TrainingState createState() => _TrainingState();
+  _Cardio_TrainingState createState() => _Cardio_TrainingState();
 }
 
 //TODO: OBEN GENANNTE FELDER SIND MIT "widget.X" erreichbar.
-class _TrainingState extends State<Training> {
+class _Cardio_TrainingState extends State<Cardio_Training> {
+  int _duration = 0;
   List<String> written = [];
   var concatenate = StringBuffer();
   Future<void> getAll() async {
-    final dataList = await DBHelper.getData('workout_exercises');
+    final dataList = await DBHelper.getData('cardio_workout');
     print(dataList);
-  }
-
-  void addToWritten(String entry) {
-    if (written.length == 1) {
-      written.removeAt(0);
-      written.add(entry);
-      concatenate.clear();
-    } else {
-      written.add(entry);
-      concatenate.clear();
-    }
-    written.forEach((item) {
-      concatenate.write(item);
-    });
   }
 
   @override
@@ -50,7 +38,7 @@ class _TrainingState extends State<Training> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kRedThemeColor,
-        title: Text('${widget.exercise.name}'),
+        title: Text('${widget.exercise}'),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -61,61 +49,10 @@ class _TrainingState extends State<Training> {
           ClipRRect(
             borderRadius: BorderRadius.circular(22.0),
             child: Image(
-              image: widget.exercise.pic,
+              image: widget.pic,
             ),
           ),
           SizedBox(
-            height: 50,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(
-                width: 55,
-              ),
-              Expanded(
-                child: Text(
-                  'SET: ',
-                  style: TextStyle(
-                    fontSize: 23,
-                  ),
-                ),
-              ),
-              Text(
-                '${widget.exercise.sets}',
-                style: TextStyle(
-                  fontSize: 35,
-                  color: kRedThemeColor,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(
-                width: 20,
-              ),
-              RoundIconButton(
-                  icon: FontAwesomeIcons.minus,
-                  onPressed: () {
-                    setState(() {
-                      if (widget.exercise.sets > 0) widget.exercise.sets--;
-                    });
-                  }),
-              SizedBox(
-                width: 10.0,
-              ),
-              RoundIconButton(
-                icon: FontAwesomeIcons.plus,
-                onPressed: () {
-                  setState(() {
-                    if (widget.exercise.sets < 100) widget.exercise.sets++;
-                  });
-                },
-              ),
-              SizedBox(
-                width: 55,
-              ),
-            ],
-          ),
-          SizedBox(
             height: 20,
           ),
           Row(
@@ -126,14 +63,14 @@ class _TrainingState extends State<Training> {
               ),
               Expanded(
                 child: Text(
-                  'REPS: ',
+                  'DURATION:',
                   style: TextStyle(
                     fontSize: 23,
                   ),
                 ),
               ),
               Text(
-                '${widget.exercise.reps}',
+                '${_duration}',
                 style: TextStyle(
                   fontSize: 35,
                   color: kRedThemeColor,
@@ -147,7 +84,7 @@ class _TrainingState extends State<Training> {
                   icon: FontAwesomeIcons.minus,
                   onPressed: () {
                     setState(() {
-                      if (widget.exercise.reps > 0) widget.exercise.reps--;
+                      if (_duration > 0) _duration -= 2;
                     });
                   }),
               SizedBox(
@@ -157,60 +94,7 @@ class _TrainingState extends State<Training> {
                 icon: FontAwesomeIcons.plus,
                 onPressed: () {
                   setState(() {
-                    if (widget.exercise.reps < 100) widget.exercise.reps++;
-                  });
-                },
-              ),
-              SizedBox(
-                width: 55,
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              SizedBox(
-                width: 55,
-              ),
-              Expanded(
-                child: Text(
-                  'WEIGHT:',
-                  style: TextStyle(
-                    fontSize: 23,
-                  ),
-                ),
-              ),
-              Text(
-                '${widget.exercise.weight}',
-                style: TextStyle(
-                  fontSize: 35,
-                  color: kRedThemeColor,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(
-                width: 20,
-              ),
-              RoundIconButton(
-                  icon: FontAwesomeIcons.minus,
-                  onPressed: () {
-                    setState(() {
-                      if (widget.exercise.weight > 0)
-                        widget.exercise.weight -= 2;
-                    });
-                  }),
-              SizedBox(
-                width: 10.0,
-              ),
-              RoundIconButton(
-                icon: FontAwesomeIcons.plus,
-                onPressed: () {
-                  setState(() {
-                    if (widget.exercise.weight < 1000)
-                      widget.exercise.weight += 2;
+                    if (_duration < 1000) _duration += 2;
                   });
                 },
               ),
@@ -235,22 +119,12 @@ class _TrainingState extends State<Training> {
           size: 40,
         ),
         onPressed: () {
-          setState(() {
-            addToWritten('Saved Set: ' +
-                widget.exercise.sets.toString() +
-                ', Rep: ' +
-                widget.exercise.reps.toString() +
-                ', Weight: ' +
-                widget.exercise.weight.toString() +
-                ' kg\n');
-          });
+          setState(() {});
           print(written);
 
-          DBHelper.insert('workout_exercises', {
-            'name': widget.exercise.name,
-            'sets': widget.exercise.sets,
-            'reps': widget.exercise.reps,
-            'weight': widget.exercise.weight,
+          DBHelper.insert('cardio_workout', {
+            'name': widget.exercise,
+            'duration': _duration,
             'day': widget.day,
             'month': widget.month,
             'year': widget.year,

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'pages/input_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() => runApp(BMICalculator());
+import 'pages/input_page.dart';
 
-class BMICalculator extends StatelessWidget {
+void main() => runApp(Powerbuilding());
+
+class Powerbuilding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
