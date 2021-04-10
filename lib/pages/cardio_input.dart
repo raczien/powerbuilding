@@ -23,14 +23,32 @@ class Cardio_Training extends StatefulWidget {
   _Cardio_TrainingState createState() => _Cardio_TrainingState();
 }
 
-//TODO: OBEN GENANNTE FELDER SIND MIT "widget.X" erreichbar.
 class _Cardio_TrainingState extends State<Cardio_Training> {
-  int _duration = 0;
+  int _duration = 30;
   List<String> written = [];
   var concatenate = StringBuffer();
   Future<void> getAll() async {
     final dataList = await DBHelper.getData('cardio_workout');
     print(dataList);
+  }
+
+  int kalorien = 0;
+
+  int getKalorien() {
+    switch (widget.exercise) {
+      case 'Rowing':
+        return 566;
+      case 'Biking':
+        return 484;
+      case 'Skipping':
+        return 980;
+      case 'Crosstrainer':
+        return 768;
+      case 'Stairs':
+        return 612;
+      case 'Treadmill':
+        return 512;
+    }
   }
 
   @override
@@ -44,7 +62,7 @@ class _Cardio_TrainingState extends State<Cardio_Training> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           SizedBox(
-            height: 30,
+            height: 60,
           ),
           ClipRRect(
             borderRadius: BorderRadius.circular(22.0),
@@ -53,62 +71,73 @@ class _Cardio_TrainingState extends State<Cardio_Training> {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 40,
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SizedBox(
-                width: 55,
-              ),
-              Expanded(
-                child: Text(
-                  'DURATION:',
-                  style: TextStyle(
-                    fontSize: 23,
-                  ),
+              Text(
+                'DURATION: ',
+                style: TextStyle(
+                  fontSize: 23,
                 ),
               ),
               Text(
-                '${_duration}',
+                '${_duration} min',
                 style: TextStyle(
                   fontSize: 35,
                   color: kRedThemeColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
-                width: 20,
-              ),
-              RoundIconButton(
-                  icon: FontAwesomeIcons.minus,
-                  onPressed: () {
-                    setState(() {
-                      if (_duration > 0) _duration -= 2;
-                    });
-                  }),
-              SizedBox(
-                width: 10.0,
-              ),
-              RoundIconButton(
-                icon: FontAwesomeIcons.plus,
-                onPressed: () {
-                  setState(() {
-                    if (_duration < 1000) _duration += 2;
-                  });
-                },
-              ),
-              SizedBox(
-                width: 55,
-              ),
             ],
           ),
           SizedBox(
             height: 20,
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              RoundIconButton(
+                  icon: FontAwesomeIcons.minus,
+                  onPressed: () {
+                    setState(() {
+                      if (_duration > 0) _duration -= 5;
+                    });
+                  }),
+              SizedBox(
+                width: 20.0,
+              ),
+              RoundIconButton(
+                icon: FontAwesomeIcons.plus,
+                onPressed: () {
+                  setState(() {
+                    if (_duration < 1000) _duration += 5;
+                  });
+                },
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          Text(
+            'ca. ' +
+                (getKalorien() / 60 * _duration).toInt().toString() +
+                ' kcl',
+            style: TextStyle(
+              fontSize: 25,
+            ),
+          ),
           Text(
             '$concatenate',
           ),
+          /*FloatingActionButton(
+              heroTag: '3',
+              backgroundColor: Colors.red,
+              onPressed: () {
+                DBHelper.truncate();
+              }),*/
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -120,7 +149,9 @@ class _Cardio_TrainingState extends State<Cardio_Training> {
         ),
         onPressed: () {
           setState(() {});
-          print(written);
+          print(
+            (getKalorien() / 60 * _duration).toInt().toString(),
+          );
 
           DBHelper.insert('cardio_workout', {
             'name': widget.exercise,

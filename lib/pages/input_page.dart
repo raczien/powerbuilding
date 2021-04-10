@@ -3,8 +3,10 @@ import 'dart:ui';
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:powerbuilding/constants.dart';
+import 'package:powerbuilding/database/db_helper.dart';
 
 import 'cardio_type.dart';
+import 'chart_test.dart';
 import 'muscle_type.dart';
 
 class InputPage extends StatefulWidget {
@@ -35,11 +37,33 @@ class _InputPageState extends State<InputPage> {
         ),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           SizedBox(
-            height: 10,
+            height: 30,
+          ),
+          CalendarTimeline(
+            showYears: true,
+            initialDate: _selectedDate,
+            firstDate: DateTime.now().subtract(Duration(days: 365)),
+            lastDate: DateTime.now().add(Duration(days: 365)),
+            onDateSelected: (date) {
+              setState(() {
+                _selectedDate = date;
+              });
+            },
+            leftMargin: 20,
+            monthColor: Colors.white70,
+            dayColor: Colors.white,
+            dayNameColor: Colors.white,
+            activeDayColor: Colors.white,
+            activeBackgroundDayColor: kRedThemeColor,
+            dotsColor: Color(0xFF333A47),
+            selectableDayPredicate: (date) => date.day != 23,
+            locale: 'de',
+          ),
+          SizedBox(
+            height: 60,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -119,30 +143,22 @@ class _InputPageState extends State<InputPage> {
               ),
             ],
           ),
-          CalendarTimeline(
-            showYears: true,
-            initialDate: _selectedDate,
-            firstDate: DateTime.now().subtract(Duration(days: 365)),
-            lastDate: DateTime.now().add(Duration(days: 365)),
-            onDateSelected: (date) {
-              setState(() {
-                _selectedDate = date;
-              });
-            },
-            leftMargin: 20,
-            monthColor: Colors.white70,
-            dayColor: Colors.white,
-            dayNameColor: Colors.white,
-            activeDayColor: Colors.white,
-            activeBackgroundDayColor: kRedThemeColor,
-            dotsColor: Color(0xFF333A47),
-            selectableDayPredicate: (date) => date.day != 23,
-            locale: 'de',
-          ),
           SizedBox(
             height: 1,
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print(DBHelper.getSpecificStats('workout_exercises', 'Reverse Curl'));
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              //builder: (context) => Exercise_Selection_Stats(),
+              builder: (context) => Chart(),
+            ),
+          );
+        },
       ),
     );
   }

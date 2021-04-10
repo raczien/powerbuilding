@@ -290,7 +290,7 @@ var shoulder_side_raise = Exercises(
   weight: 50,
 );
 var side_raise = Exercises(
-  pic: AssetImage('images/shoulders/shoulder_press.jpg'),
+  pic: AssetImage('images/shoulders/side_raise.jpg'),
   name: 'Side Raise (Dunbell)',
   reps: 10,
   sets: 1,

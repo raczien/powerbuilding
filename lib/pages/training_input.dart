@@ -27,7 +27,7 @@ class _TrainingState extends State<Training> {
   List<String> written = [];
   var concatenate = StringBuffer();
   Future<void> getAll() async {
-    final dataList = await DBHelper.getData('workout_exercises');
+    final dataList = await DBHelper.getAllSavedExercises('workout_exercises');
     print(dataList);
   }
 
@@ -277,19 +277,6 @@ class _TrainingState extends State<Training> {
                     heroTag: '3',
                     backgroundColor: Colors.red,
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LineChartWidget(
-                            name: 'Test',
-                          ),
-                        ),
-                      );
-                    }),*/ /*
-                */ /*FloatingActionButton(
-                    heroTag: '3',
-                    backgroundColor: Colors.red,
-                    onPressed: () {
                       DBHelper.truncate();
                     }),*/ /*
               ],
@@ -302,19 +289,7 @@ class _TrainingState extends State<Training> {
                     onPressed: () {
                       getAll();
                     }),*/
-/*FloatingActionButton(
-                    heroTag: '3',
-                    backgroundColor: Colors.red,
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LineChartWidget(
-                            name: 'Test',
-                          ),
-                        ),
-                      );
-                    }),*/
+
 /*FloatingActionButton(
                     heroTag: '3',
                     backgroundColor: Colors.red,
