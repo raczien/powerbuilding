@@ -48,7 +48,13 @@ class DBHelper {
       String table, String exercise) async {
     final db = await DBHelper.database();
     return db.rawQuery(
-      """SELECT SUM(weight)/ MAX(sets) as weight, year, month, day FROM workout_exercises WHERE name = '$exercise' GROUP BY year,month,day""",
+      """SELECT SUM(weight)/ MAX(sets) as weight, year, month, day FROM workout_exercises WHERE name = '$exercise' AND year = 2020 and month = 4 GROUP BY year,month,day ORDER BY year,month,day""",
     );
   }
+
+  //all (id)
+  //year
+  //month
+
+  //TODO: donut graph percent for each bodypart trained
 }
