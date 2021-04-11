@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:powerbuilding/constants.dart';
 import 'package:powerbuilding/database/db_helper.dart';
+import 'chart_test.dart';
 
 class Exercise_Selection_Stats extends StatefulWidget {
   @override
@@ -21,6 +22,9 @@ class _Exercise_Selection_StatsState extends State<Exercise_Selection_Stats> {
     return all;
   }
 
+  Color activeCardColor = kRedThemeColor;
+  Color inactiveCardColor = Color(0xFF14171C);
+  String selectedCategory;
   String _getExercisePic(String name) {
     switch (name) {
       case 'Benchpress':
@@ -116,6 +120,10 @@ class _Exercise_Selection_StatsState extends State<Exercise_Selection_Stats> {
     }
   }
 
+  String picked;
+  String dropdownMonth = 'SELECT MONTH';
+  String dropdownYear = 'SELECT YEAR';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,61 +131,203 @@ class _Exercise_Selection_StatsState extends State<Exercise_Selection_Stats> {
         backgroundColor: kRedThemeColor,
         title: Text('Select Exercise'),
       ),
-      body: FutureBuilder(
-        future: getAll(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return ListView.separated(
-              padding: EdgeInsets.all(5),
-              itemBuilder: (BuildContext context, int index) {
-                return GestureDetector(
-                  onTap: () {
-                    print('hi');
-                  },
-                  child: Container(
-                    color: Colors.transparent,
-                    child: Row(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(22.0),
-                          child: Image(
-                            width: 70,
-                            height: 70,
-                            image: AssetImage(
-                              'images/' + _getExercisePic(all[index]) + '.jpg',
-                            ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          FutureBuilder(
+            future: getAll(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Container(
+                  height: MediaQuery.of(context).size.height - 200,
+                  child: ListView.separated(
+                    padding: EdgeInsets.all(5),
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            picked = all[index];
+                          });
+
+                          print('hi');
+                        },
+                        child: Container(
+                          color: picked == all[index]
+                              ? activeCardColor
+                              : inactiveCardColor,
+                          child: Row(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(22.0),
+                                child: Image(
+                                  width: 70,
+                                  height: 70,
+                                  image: AssetImage(
+                                    'images/' +
+                                        _getExercisePic(all[index]) +
+                                        '.jpg',
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                all[index],
+                                style: TextStyle(
+                                  fontSize: 25,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          all[index],
-                          style: TextStyle(
-                            fontSize: 25,
-                          ),
-                        ),
-                      ],
-                    ),
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index) =>
+                        Divider(),
+                    itemCount: all.length,
                   ),
                 );
-              },
-              separatorBuilder: (BuildContext context, int index) => Divider(),
-              itemCount: all.length,
-            );
-          } else {
-            debugPrint('Step 1, build loading widget');
-            return CircularProgressIndicator();
-          }
-        },
+              } else {
+                debugPrint('Step 1, build loading widget');
+                return CircularProgressIndicator();
+              }
+            },
+          ),
+          Container(
+            height: 40,
+            color: Colors.black12,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedCategory == 'ALL'
+                          ? selectedCategory = ''
+                          : selectedCategory = 'ALL';
+                    });
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: selectedCategory == 'ALL'
+                          ? activeCardColor
+                          : inactiveCardColor,
+                    ),
+                    height: 50,
+                    width: 120,
+                    child: Center(
+                      child: Text(
+                        'ALL',
+                        style: TextStyle(
+                          fontSize: 25,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                DropdownButtonHideUnderline(
+                  child: DropdownButton<String>(
+                    value: dropdownYear,
+                    icon: const Icon(Icons.arrow_downward),
+                    iconSize: 24,
+                    elevation: 16,
+                    style: const TextStyle(color: Colors.white),
+                    underline: Container(
+                      height: 2,
+                      color: Colors.deepPurpleAccent,
+                    ),
+                    onChanged: (newValue) {
+                      setState(() {
+                        dropdownYear = newValue;
+                      });
+                    },
+                    items: <String>['SELECT YEAR', '2019', '2020', '2021']
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
+                ),
+                DropdownButtonHideUnderline(
+                  child: DropdownButton<String>(
+                    value: dropdownMonth,
+                    icon: const Icon(Icons.arrow_downward),
+                    iconSize: 24,
+                    elevation: 16,
+                    style: const TextStyle(color: Colors.white),
+                    underline: Container(
+                      height: 2,
+                      color: Colors.deepPurpleAccent,
+                    ),
+                    onChanged: (newValue) {
+                      setState(() {
+                        dropdownMonth = newValue;
+                      });
+                    },
+                    items: <String>[
+                      'SELECT MONTH',
+                      'January',
+                      'February',
+                      'March',
+                      'April',
+                      'May',
+                      'June',
+                      'July',
+                      'August',
+                      'September',
+                      'October',
+                      'November',
+                      'December'
+                    ].map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 1,
+          ),
+        ],
       ),
-
-      /*ListView.separated(
-          itemBuilder: itemBuilder,
-          separatorBuilder: separatorBuilder,
-          itemCount: getAll(),
-        ),*/
+      bottomNavigationBar: BottomAppBar(
+        color: kRedThemeColor,
+        child: Container(
+          height: 70,
+          child: GestureDetector(
+            child: Center(
+              child: Text(
+                'GENERATE CHART',
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            onTap: () {
+              print(DBHelper.getSpecificStats(
+                  'workout_exercises', 'Reverse Curl'));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  //builder: (context) => Exercise_Selection_Stats(),
+                  builder: (context) => Chart(type: 'Reverse Curl'),
+                ),
+              );
+            },
+          ),
+        ),
+      ),
     );
+
     /*floatingActionButton: FloatingActionButton(
         onPressed: () {
           print(getAll());

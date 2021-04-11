@@ -3,14 +3,10 @@ import 'package:powerbuilding/constants.dart';
 import 'package:powerbuilding/database/db_helper.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-class SalesData {
-  SalesData(this.year, this.sales);
-  final double year;
-  final double sales;
-}
-
 class ExerciseData {
-  ExerciseData(this.name, this.weight, this.year, this.month, this.day);
+  ExerciseData(
+      this.id, this.name, this.weight, this.year, this.month, this.day);
+  final int id;
   final String name;
   final int weight;
   final int year;
@@ -19,29 +15,30 @@ class ExerciseData {
 }
 
 class Chart extends StatefulWidget {
+  Chart({@required this.type});
+
+  final String type;
   @override
   _ChartState createState() => _ChartState();
 }
 
 class _ChartState extends State<Chart> {
-  List<String> all = [];
+  int id = 0;
+  final List<ExerciseData> chartData = [];
 
-  Future<List<String>> getAll() async {
-    all.clear();
+  Future<List<ExerciseData>> getAll() async {
     final dataList =
-        await DBHelper.getSpecificStats('workout_exercises', 'Reverse Curl');
+        await DBHelper.getSpecificStats('workout_exercises', widget.type);
     dataList.forEach((element) {
       print(element);
-      all.add(element["weight"].toString());
 
-      chartData.add(ExerciseData('Reverse Curl', element["weight"],
+      chartData.add(ExerciseData(id, 'Reverse Curl', element["weight"],
           element["year"], element["month"], element["day"]));
+      id++;
     });
-    print(all);
-    return all;
-  }
 
-  final List<ExerciseData> chartData = [];
+    return chartData;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,9 +59,12 @@ class _ChartState extends State<Chart> {
                   series: <ChartSeries>[
                     // Renders line chart
                     LineSeries<ExerciseData, int>(
-                        dataSource: chartData,
-                        xValueMapper: (ExerciseData sales, _) => sales.day,
-                        yValueMapper: (ExerciseData sales, _) => sales.weight)
+                      dataSource: chartData,
+                      yAxisName: 'Weight',
+                      xValueMapper: (ExerciseData exercise, _) => exercise.id,
+                      yValueMapper: (ExerciseData exercise, _) =>
+                          exercise.weight,
+                    ),
                   ],
                 ),
               ),
@@ -74,9 +74,6 @@ class _ChartState extends State<Chart> {
             return CircularProgressIndicator();
           }
         },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: getAll,
       ),
     );
   }

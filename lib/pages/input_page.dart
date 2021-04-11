@@ -3,10 +3,8 @@ import 'dart:ui';
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:powerbuilding/constants.dart';
-import 'package:powerbuilding/database/db_helper.dart';
-
+import 'package:powerbuilding/pages/exercise_selection_stats.dart';
 import 'cardio_type.dart';
-import 'chart_test.dart';
 import 'muscle_type.dart';
 
 class InputPage extends StatefulWidget {
@@ -144,21 +142,41 @@ class _InputPageState extends State<InputPage> {
             ],
           ),
           SizedBox(
-            height: 1,
+            height: 10,
+          ),
+          Column(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      //builder: (context) => Exercise_Selection_Stats(),
+                      builder: (context) => Exercise_Selection_Stats(),
+                    ),
+                  );
+                },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20.0),
+                  child: Image(
+                    height: 100,
+                    width: 200,
+                    image: AssetImage('images/logo/chart.png'),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Statistics',
+                style: TextStyle(
+                  fontSize: 25,
+                ),
+              ),
+            ],
           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          print(DBHelper.getSpecificStats('workout_exercises', 'Reverse Curl'));
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              //builder: (context) => Exercise_Selection_Stats(),
-              builder: (context) => Chart(),
-            ),
-          );
-        },
       ),
     );
   }
