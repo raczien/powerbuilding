@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:powerbuilding/constants.dart';
 import 'package:powerbuilding/database/db_helper.dart';
+
 import 'chart_test.dart';
 
 class Exercise_Selection_Stats extends StatefulWidget {
@@ -28,7 +29,7 @@ class _Exercise_Selection_StatsState extends State<Exercise_Selection_Stats> {
   String _getExercisePic(String name) {
     switch (name) {
       case 'Benchpress':
-        return 'chest/benchPress';
+        return 'chest/benchpress';
       case 'Inclined Benchpress':
         return 'chest/inclined_benchpress';
       case 'Chest Press (Machine)':
@@ -148,8 +149,7 @@ class _Exercise_Selection_StatsState extends State<Exercise_Selection_Stats> {
                           setState(() {
                             picked = all[index];
                           });
-
-                          print('hi');
+                          print('PICKED VALUE: ' + picked);
                         },
                         child: Container(
                           color: picked == all[index]
@@ -319,7 +319,7 @@ class _Exercise_Selection_StatsState extends State<Exercise_Selection_Stats> {
                 context,
                 MaterialPageRoute(
                   //builder: (context) => Exercise_Selection_Stats(),
-                  builder: (context) => Chart(type: 'Reverse Curl'),
+                  builder: (context) => Chart(type: picked),
                 ),
               );
             },

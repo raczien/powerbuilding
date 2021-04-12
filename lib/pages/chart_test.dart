@@ -30,10 +30,11 @@ class _ChartState extends State<Chart> {
     final dataList =
         await DBHelper.getSpecificStats('workout_exercises', widget.type);
     dataList.forEach((element) {
-      print(element);
+      //print(element);
 
-      chartData.add(ExerciseData(id, 'Reverse Curl', element["weight"],
+      chartData.add(ExerciseData(id, widget.type, element["weight"],
           element["year"], element["month"], element["day"]));
+      print('ChartData: ' + chartData.toString());
       id++;
     });
 

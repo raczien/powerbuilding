@@ -4,6 +4,7 @@ import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:powerbuilding/constants.dart';
 import 'package:powerbuilding/pages/exercise_selection_stats.dart';
+
 import 'cardio_type.dart';
 import 'muscle_type.dart';
 
@@ -61,7 +62,7 @@ class _InputPageState extends State<InputPage> {
             locale: 'de',
           ),
           SizedBox(
-            height: 60,
+            height: 30,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -164,9 +165,6 @@ class _InputPageState extends State<InputPage> {
                     image: AssetImage('images/logo/chart.png'),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 10,
               ),
               Text(
                 'Statistics',
